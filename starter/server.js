@@ -6,6 +6,7 @@ const path = require('path');
 // ========================================
 // Step 1: Create an Express application instance
 
+const app = express();
 const PORT = process.env.PORT || 3000;
 
 // ========================================
@@ -15,17 +16,18 @@ const PORT = process.env.PORT || 3000;
 // This middleware automatically serves HTML, CSS, images, etc.
 // Hint: This single line replaces all the file reading logic from Workshop 02!
 
+app.use(express.static('public'));
 
 // ========================================
 // BONUS: Custom Request Logging Middleware
 // ========================================
 // Uncomment this middleware to log all incoming requests:
-/*
+
 app.use((req, res, next) => {
     console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
     next(); // Don't forget to call next()!
 });
-*/
+
 
 
 // ========================================
