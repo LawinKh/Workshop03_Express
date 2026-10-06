@@ -65,17 +65,34 @@ app.get('/contact', (req, res) => {
 // It should return JSON with 'datetime' and 'timestamp' properties
 // Hint: Use res.json() to send JSON response
 
+/* TASK 4 completed but commented out for the purpose of completing task 6
+app.get('/api/time', (req, res) => {
+    const now = new Date();
+
+    res.json({
+        datetime: now.toISOString(),
+        timestamp: now.getTime()
+    });
+});
+*/
+
 // ========================================
 // BONUS: Task 6 - Express Router (Optional)
 // ========================================
 // Organize API routes using Express Router
 // Complete section below to use Router:
 
-/*
 const apiRouter = express.Router();
 
 // Move the /api/time route to the router
+apiRouter.get('/time', (req, res) => {
+    const now = new Date();
 
+    res.json({
+        datetime: now.toISOString(),
+        timestamp: now.getTime()
+    });
+});
 
 // Add more API routes here if needed
 apiRouter.get('/info', (req, res) => {
@@ -88,7 +105,6 @@ apiRouter.get('/info', (req, res) => {
 
 // Mount the API router
 app.use('/api', apiRouter);
-*/
 
 
 // ========================================
@@ -98,30 +114,25 @@ app.use('/api', apiRouter);
 // 404 Handler - Must be placed AFTER all other routes
 // This catches any requests that don't match the routes above
 // TODO: Complete:
-/*
-app.use((req, res) => {
-    complete this line - res.status(404)....);
-});
-*/
 
+app.use((req, res) => {
+    res.status(404).sendFile(path.join(__dirname, 'public', '404.html'));
+});
 
 // 500 Error Handler - Must be placed LAST
 // This catches any errors that occur in your application
 // Note: Error handling middleware has 4 parameters: (err, req, res, next)
 // TODO: Complete:
-/*
 app.use((err, req, res, next) => {
     console.error('Server Error:', err.stack);
-    complete this line - res.status(500)....);
+    res.status(500).sendFile(path.join(__dirname, 'public', '500.html'));
 });
-*/
-
 
 // ========================================
 // Start the Server
 // ========================================
 // TODO: Uncomment the code below to start the server:
-/*
+
 app.listen(PORT, () => {
     console.log(`✅ Server is running on http://localhost:${PORT}`);
     console.log('\n📍 Available routes:');
@@ -131,7 +142,6 @@ app.listen(PORT, () => {
     console.log('  GET /api/time      -> Current date/time API');
     console.log('\n⏹️  Press Ctrl+C to stop the server\n');
 });
-*/
 
 // ========================================
 // 🎯 IMPLEMENTATION TIPS
